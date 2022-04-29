@@ -51,11 +51,4 @@ public class UserController {
         return R.ok().data("page",page);
     }
 
-    @GetMapping("/test")
-    public R test(){
-//        String str = null;
-//        str.equals("aaa");
-        Integer.parseInt("aaa123");
-        return R.ok();
-    }
 }
