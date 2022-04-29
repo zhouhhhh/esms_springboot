@@ -62,19 +62,19 @@
             <version>2.3.28</version>
         </dependency>
         <!-- swagger -->
-                <dependency>
-                    <groupId>io.springfox</groupId>
-                    <artifactId>springfox-boot-starter</artifactId>
-                    <version>3.0.0</version>
-                </dependency>
+<!--                <dependency>-->
+<!--                    <groupId>io.springfox</groupId>-->
+<!--                    <artifactId>springfox-boot-starter</artifactId>-->
+<!--                    <version>3.0.0</version>-->
+<!--                </dependency>-->
 
         <!--目前已经发行的Knife4j版本，Knife4j本身已经引入了springfox， -->
         <!--开发者在使用时不用再单独引入Springfox的具体版本，否额会导致版本冲突。-->
-<!--        <dependency>-->
-<!--            <groupId>com.github.xiaoymin</groupId>-->
-<!--            <artifactId>knife4j-spring-boot-starter</artifactId>-->
-<!--            <version>2.0.7</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>2.0.7</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

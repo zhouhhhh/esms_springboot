@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
+ * 此为创建时间与更新时间在插入更新操作时自动赋值
  * @author zhou
  */
 @Component
