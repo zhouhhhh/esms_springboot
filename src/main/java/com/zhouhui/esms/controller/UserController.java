@@ -2,6 +2,7 @@ package com.zhouhui.esms.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhouhui.esms.entity.User;
 import com.zhouhui.esms.service.UserService;
@@ -44,11 +45,16 @@ public class UserController {
                                  @RequestParam Integer pageSize,
                                  @RequestParam(defaultValue = "")String userName){
 
-        Page<User> userPage = new Page<>(pageCurrent, pageSize);
+        IPage<User> userPage = new Page<>(pageCurrent, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("user_name",userName);
-        Page<User> page = userService.page(userPage, queryWrapper);
+        IPage<User> page = userService.findUsersAndDepartmentName(userPage, queryWrapper);
         return R.ok().data("page",page);
     }
-
+    @GetMapping("/test")
+    public R test(){
+        String str = null;
+        str.equals("aaa");
+        return  R.ok();
+    }
 }

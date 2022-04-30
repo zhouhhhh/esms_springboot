@@ -2,7 +2,6 @@ package com.zhouhui.esms.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-04-27
  */
 @RestController
-@RequestMapping("/esms/department")
+@RequestMapping("/esms/departments")
 public class DepartmentController {
+
+
 
 }

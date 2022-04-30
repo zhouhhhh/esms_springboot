@@ -1,7 +1,5 @@
 package com.zhouhui.esms;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.zhouhui.esms.entity.User;
 import com.zhouhui.esms.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
@@ -48,5 +46,6 @@ class EsmsApplicationTests {
         userMapper.updateById(user);
 
     }
+
 
 }

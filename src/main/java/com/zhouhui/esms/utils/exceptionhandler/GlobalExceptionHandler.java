@@ -2,11 +2,11 @@ package com.zhouhui.esms.utils.exceptionhandler;
 
 
 import com.zhouhui.esms.utils.R;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -15,8 +15,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+//    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
      * 处理自定义的业务异常
@@ -27,7 +28,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BizException.class)
     @ResponseBody
     public R bizExceptionHandler(HttpServletRequest req, BizException e){
-        logger.error("发生业务异常！原因是：{}",e.getErrorMsg());
+        log.error("发生业务异常！原因是：{}",e.getErrorMsg());
         return R.error(e.getErrorCode(),e.getErrorMsg());
     }
 
@@ -40,7 +41,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value =NullPointerException.class)
     @ResponseBody
     public R exceptionHandler(HttpServletRequest req, NullPointerException e){
-        logger.error("发生空指针异常！原因是:",e);
+        log.error("发生空指针异常！原因是:",e);
         return R.error(ExceptionEnum.BODY_NOT_MATCH);
     }
 
@@ -53,7 +54,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = NumberFormatException.class)
     @ResponseBody
     public R exceptionHandler(HttpServletRequest req, NumberFormatException e){
-        logger.error("发生类型转换异常！原因是:",e);
+        log.error("发生类型转换异常！原因是:",e);
         return R.error(ExceptionEnum.PARAMS_NOT_CONVERT);
     }
     /**
@@ -65,7 +66,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value =Exception.class)
     @ResponseBody
     public R exceptionHandler(HttpServletRequest req, Exception e){
-        logger.error("未知异常！原因是:",e);
+        log.error("未知异常！原因是:",e);
         return R.error(ExceptionEnum.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,7 +1,11 @@
 package com.zhouhui.esms.service;
 
-import com.zhouhui.esms.entity.User;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhouhui.esms.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    IPage<User> findUsersAndDepartmentName(IPage<User> page,
+                                           @Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
 }

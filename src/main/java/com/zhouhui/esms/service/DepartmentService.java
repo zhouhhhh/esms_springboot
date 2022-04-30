@@ -1,7 +1,7 @@
 package com.zhouhui.esms.service;
 
-import com.zhouhui.esms.entity.Department;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhouhui.esms.entity.Department;
 
 /**
  * <p>
@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-27
  */
 public interface DepartmentService extends IService<Department> {
+
 
 }

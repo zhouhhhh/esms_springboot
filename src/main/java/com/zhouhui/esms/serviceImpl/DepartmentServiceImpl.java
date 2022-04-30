@@ -1,9 +1,9 @@
 package com.zhouhui.esms.serviceImpl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhouhui.esms.entity.Department;
 import com.zhouhui.esms.mapper.DepartmentMapper;
 import com.zhouhui.esms.service.DepartmentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +16,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department> implements DepartmentService {
+
 
 }
