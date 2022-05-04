@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhouhui.esms.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户 服务类
@@ -17,6 +19,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserService extends IService<User> {
 
-    IPage<User> findUsersAndDepartmentName(IPage<User> page,
+    IPage<User> findUsersAndDepartmentNameByPage(IPage<User> page,
                                            @Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
+    List<User> findUsersAndDepartmentName(@Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
 }

@@ -10,6 +10,8 @@ import com.zhouhui.esms.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户 服务实现类
@@ -22,10 +24,16 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
-    public IPage<User> findUsersAndDepartmentName(IPage<User> page,
+    public IPage<User> findUsersAndDepartmentNameByPage(IPage<User> page,
                                                   @Param(Constants.WRAPPER)
                                                           QueryWrapper<User> userQueryWrapper) {
         UserMapper userMapper = getBaseMapper();
-        return userMapper.findUsersAndDepartmentName(page,userQueryWrapper);
+        return userMapper.findUsersAndDepartmentNameByPage(page,userQueryWrapper);
+    }
+
+    @Override
+    public List<User> findUsersAndDepartmentName(QueryWrapper<User> userQueryWrapper) {
+        UserMapper userMapper = getBaseMapper();
+        return userMapper.findUsersAndDepartmentName(userQueryWrapper);
     }
 }
