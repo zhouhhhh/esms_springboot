@@ -63,6 +63,16 @@ public class UserController {
             return R.error();
         }
     }
+
+    @DeleteMapping("/batch/ids")
+    public R deleteBatch(@RequestBody List<Integer> ids){
+        boolean b = userService.removeBatchByIds(ids);
+        if(b == true){
+            return R.ok();
+        }else {
+            return R.error();
+        }
+    }
     @GetMapping("/page")
     public R findByPage(@RequestParam Integer pageCurrent,
                                  @RequestParam Integer pageSize,
