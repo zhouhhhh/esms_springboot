@@ -23,6 +23,6 @@ public interface UserService extends IService<User> {
                                            @Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
     List<User> findUsersAndDepartmentName(@Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
 
-    boolean login(User user);
+    User login(User user);
 
 }

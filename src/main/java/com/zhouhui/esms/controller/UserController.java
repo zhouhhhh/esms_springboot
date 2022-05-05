@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhouhui.esms.entity.User;
 import com.zhouhui.esms.service.UserService;
 import com.zhouhui.esms.utils.R;
+import com.zhouhui.esms.utils.exceptionhandler.ExceptionEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,11 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation(value = "登录",notes = "登录功能")
     public R login(@RequestBody User user){
-        boolean b = userService.login(user);
-        if(b == true){
-            return R.ok();
+        User login = userService.login(user);
+        if(login != null){
+            return R.ok().data("user",login);
         }else {
-            return R.error();
+            return R.error(ExceptionEnum.NOT_FOUND);
         }
     }
 
@@ -75,6 +76,7 @@ public class UserController {
     }
 
     @DeleteMapping("/batch/ids")
+    @ApiOperation(value = "批量删除用户",notes = "批量删除用户信息")
     public R deleteBatch(@RequestBody List<Integer> ids){
         boolean b = userService.removeBatchByIds(ids);
         if(b == true){
@@ -84,11 +86,11 @@ public class UserController {
         }
     }
     @GetMapping("/page")
+    @ApiOperation(value = "分页查询用户",notes = "分页查询所有用户信息，按条件查询")
     public R findByPage(@RequestParam Integer pageCurrent,
                                  @RequestParam Integer pageSize,
                                  @RequestParam(required = false) Integer departmentId,
                                  @RequestParam(defaultValue = "")String userName){
-
         IPage<User> userPage = new Page<>(pageCurrent, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if(departmentId != null){
@@ -103,6 +105,7 @@ public class UserController {
      * 导出excel接口
      */
     @GetMapping("/excel")
+    @ApiOperation(value = "导出excel",notes = "将用户信息导出excel文档")
     public void exportExcel(HttpServletResponse response) throws Exception{
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         List<User> list = userService.findUsersAndDepartmentName(queryWrapper);
