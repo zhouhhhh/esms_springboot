@@ -22,4 +22,7 @@ public interface UserService extends IService<User> {
     IPage<User> findUsersAndDepartmentNameByPage(IPage<User> page,
                                            @Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
     List<User> findUsersAndDepartmentName(@Param(Constants.WRAPPER) QueryWrapper<User> userQueryWrapper);
+
+    boolean login(User user);
+
 }

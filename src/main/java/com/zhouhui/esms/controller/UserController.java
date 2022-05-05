@@ -35,6 +35,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PostMapping("/login")
+    @ApiOperation(value = "登录",notes = "登录功能")
+    public R login(@RequestBody User user){
+        boolean b = userService.login(user);
+        if(b == true){
+            return R.ok();
+        }else {
+            return R.error();
+        }
+    }
 
     @GetMapping
     @ApiOperation(value = "用户列表",notes = "查询所有用户信息")
