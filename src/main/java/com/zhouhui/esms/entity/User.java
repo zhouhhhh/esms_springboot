@@ -28,11 +28,11 @@ public class User implements Serializable {
     @TableId(value = "user_id", type = IdType.AUTO)
     private Integer userId;
 
-    @ApiModelProperty("用户编号")
+    @ApiModelProperty("用户账号")
     @TableField("user_code")
     private String userCode;
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty("用户名称")
     @TableField("user_name")
     private String userName;
 

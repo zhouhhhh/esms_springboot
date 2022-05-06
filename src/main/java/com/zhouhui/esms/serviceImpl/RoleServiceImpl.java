@@ -1,9 +1,9 @@
 package com.zhouhui.esms.serviceImpl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhouhui.esms.entity.Role;
 import com.zhouhui.esms.mapper.RoleMapper;
 import com.zhouhui.esms.service.RoleService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

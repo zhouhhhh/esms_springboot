@@ -1,13 +1,12 @@
 package com.zhouhui.esms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -28,9 +27,6 @@ public class Role implements Serializable {
     @TableId(value = "role_id", type = IdType.AUTO)
     private Integer roleId;
 
-    @ApiModelProperty("角色编号")
-    @TableField("role_code")
-    private String roleCode;
 
     @ApiModelProperty("角色名")
     @TableField("role_name")
@@ -62,7 +58,7 @@ public class Role implements Serializable {
     private Integer version;
 
     @ApiModelProperty("逻辑删除;0代表未删除，1代表删除，默认值为0")
-    @TableField("del_flag")
+    @TableField(value = "del_flag")
     @TableLogic
     private Integer delFlag;
 

@@ -17,8 +17,8 @@ public enum ExceptionEnum implements BaseErrorInfoInterface{
     PARAMS_NOT_CONVERT(4002,"类型转换不对!"),
     NOT_FOUND(4004, "未找到该资源!"),
     NOT_TOKEN(4005, "没有携带token,请重新登录!"),
-    NOT_EXIST_USER(4006, "不存在该用户,请重新登录!"),
-    TOKEN_VERIFY_ERROR(4007, "token验证失败，请重新登录!"),
+    NOT_EXIST_USER(4005, "不存在该用户,请重新登录!"),
+    TOKEN_VERIFY_ERROR(4005, "token验证失败，请重新登录!"),
     INTERNAL_SERVER_ERROR(5000, "服务器内部错误!"),
     SERVICE_ERROR(5002,"业务逻辑异常!"),
     SERVER_BUSY(5003,"服务器正忙，请稍后再试!");

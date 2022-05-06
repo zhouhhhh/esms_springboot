@@ -1,13 +1,12 @@
 package com.zhouhui.esms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -31,10 +30,6 @@ public class Department implements Serializable {
     @ApiModelProperty("部门名")
     @TableField("department_name")
     private String departmentName;
-
-    @ApiModelProperty("部门人数")
-    @TableField("population")
-    private Integer population;
 
     @ApiModelProperty("办公电话")
     @TableField("phone")
@@ -70,5 +65,8 @@ public class Department implements Serializable {
     @TableLogic
     private Integer delFlag;
 
+    @ApiModelProperty("部门人数")
+    @TableField(exist = false)
+    private Integer population;
 
 }
