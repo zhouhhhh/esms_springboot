@@ -4,7 +4,9 @@ package com.zhouhui.esms.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhouhui.esms.entity.Dict;
 import com.zhouhui.esms.entity.Menu;
+import com.zhouhui.esms.mapper.DictMapper;
 import com.zhouhui.esms.service.MenuService;
 import com.zhouhui.esms.utils.R;
 import io.swagger.annotations.Api;
@@ -29,6 +31,9 @@ import java.util.stream.Collectors;
 public class MenuController {
     @Autowired
     MenuService menuService;
+
+    @Autowired
+    DictMapper dictMapper;
 
     @GetMapping
     public R findAll(@RequestParam(defaultValue = "") String menuName) {
@@ -115,5 +120,12 @@ public class MenuController {
         } else {
             return R.error();
         }
+    }
+    @GetMapping("/icons")
+    public R getIcons(){
+        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("type","icon");
+        List<Dict> dicts = dictMapper.selectList(queryWrapper);
+        return R.ok().data("dictList",dicts);
     }
 }

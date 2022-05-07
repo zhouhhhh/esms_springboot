@@ -36,6 +36,13 @@ public class RoleController {
         return R.ok().data("roleList",list);
     }
 
+    @GetMapping("/rolesnames")
+    public R findRolesNames(){
+        QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("role_id","role_name");
+        List<Role> list = roleService.list(queryWrapper);
+        return R.ok().data("roleList",list);
+    }
     @GetMapping("/page")
     @ApiOperation(value = "分页查询角色信息", notes = "分页查询角色信息,并按条件查询")
     public R findAllByPages(@RequestParam Integer pageCurrent,
@@ -79,5 +86,23 @@ public class RoleController {
         }else {
             return R.error();
         }
+    }
+
+    /**
+     * 角色和菜单之间的关系
+     * @param roleId 角色id
+     * @param menuIds 菜单id
+     * @return
+     */
+    @PostMapping("/rolemenu/{roleId}")
+    public R roleMenu(@PathVariable Integer roleId,@RequestBody List<Integer> menuIds){
+        roleService.setRoleMenu(roleId,menuIds);
+        return R.ok();
+    }
+
+    @GetMapping("/rolemenu/{roleId}")
+    public R getRoleMenu(@PathVariable Integer roleId){
+        List<Integer> menuIds = roleService.getRoleMenu(roleId);
+        return R.ok().data("menuIds",menuIds);
     }
 }

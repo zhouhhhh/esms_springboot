@@ -48,6 +48,10 @@ public class User implements Serializable {
     @TableField("user_department_id")
     private Integer userDepartmentId;
 
+    @ApiModelProperty("角色;取自角色表id")
+    @TableField("user_role_id")
+    private Integer userRoleId;
+
     @ApiModelProperty("生日")
     @TableField("birthday")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
@@ -89,7 +93,11 @@ public class User implements Serializable {
 
     @ApiModelProperty("联合部门表查询的部门名称")
     @TableField(exist = false)
-    private String DepartmentName;
+    private String departmentName;
+
+    @ApiModelProperty("联合角色表查询的角色名称")
+    @TableField(exist = false)
+    private String roleName;
 
     @ApiModelProperty("token")
     @TableField(exist = false)
