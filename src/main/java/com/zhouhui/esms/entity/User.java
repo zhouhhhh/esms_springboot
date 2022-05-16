@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -102,5 +103,10 @@ public class User implements Serializable {
     @ApiModelProperty("token")
     @TableField(exist = false)
     private String token;
+
+
+    @ApiModelProperty("menus")
+    @TableField(exist = false)
+    private List<Menu> menus;
 
 }

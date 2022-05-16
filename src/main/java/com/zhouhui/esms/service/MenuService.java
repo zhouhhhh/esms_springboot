@@ -3,6 +3,8 @@ package com.zhouhui.esms.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhouhui.esms.entity.Menu;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.zhouhui.esms.entity.Menu;
  */
 public interface MenuService extends IService<Menu> {
 
+    List<Menu> findAll(String menuName);
 }

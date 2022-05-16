@@ -4,16 +4,22 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhouhui.esms.entity.Menu;
 import com.zhouhui.esms.entity.User;
+import com.zhouhui.esms.mapper.MenuMapper;
+import com.zhouhui.esms.mapper.RoleMenuMapper;
 import com.zhouhui.esms.mapper.UserMapper;
+import com.zhouhui.esms.service.MenuService;
 import com.zhouhui.esms.service.UserService;
 import com.zhouhui.esms.utils.JWTUtils;
 import com.zhouhui.esms.utils.exceptionhandler.BizException;
 import com.zhouhui.esms.utils.exceptionhandler.ExceptionEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +33,13 @@ import java.util.List;
 @Service
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    @Autowired
+    RoleMenuMapper roleMenuMapper;
+    @Autowired
+    MenuMapper menuMapper;
+    @Autowired
+    MenuService menuService;
 
     @Override
     public IPage<User> findUsersAndDepartmentNameByPage(IPage<User> page,
@@ -57,6 +70,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if(selectOne != null){
                 String token = JWTUtils.createToken(selectOne.getUserId().toString(),selectOne.getUserPassword());
                 selectOne.setToken(token);
+                List<Menu> menus = getUserRoleMenus(selectOne);
+                selectOne.setMenus(menus);
             }
             return selectOne;
         }
@@ -66,5 +81,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new BizException(ExceptionEnum.SERVICE_ERROR);
         }
 
+    }
+
+    /**
+     * 获取用户自身的权限菜单
+     * @param selectOne
+     * @return
+     */
+    private List<Menu> getUserRoleMenus(User selectOne){
+        Integer userRoleId = selectOne.getUserRoleId();
+        List<Integer> menuList = roleMenuMapper.selectListByRoleId(userRoleId);
+        List<Menu> all = menuService.findAll("");
+        List<Menu> menus = new ArrayList<>();
+        //一共有三级目录
+        for(Menu first : all){
+            if(menuList.contains(first.getMenuId()) || first.getPid() == null){
+                menus.add(first);
+            }
+            List<Menu> seconds = first.getChildren();
+
+            seconds.removeIf(menu -> !menuList.contains(menu.getMenuId()));
+            for (Menu second : seconds){
+                List<Menu> thirds = second.getChildren();
+                thirds.removeIf(menu -> !menuList.contains(menu.getMenuId()));
+            }
+        }
+        return menus;
     }
 }
