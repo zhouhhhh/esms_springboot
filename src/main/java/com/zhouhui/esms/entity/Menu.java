@@ -48,6 +48,10 @@ public class Menu implements Serializable {
     @TableField("pid")
     private Integer pid;
 
+    @ApiModelProperty("页面目录")
+    @TableField("dir")
+    private String dir;
+
     @ApiModelProperty("创建人")
     @TableField("created_by")
     private Integer createdBy;
