@@ -39,9 +39,6 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
             roleMenu.setMenuId(id);
             roleMenuMapper.insert(roleMenu);
         }
-
-
-
     }
 
     @Override

@@ -16,4 +16,7 @@ import java.util.List;
 public interface MenuService extends IService<Menu> {
 
     List<Menu> findAll(String menuName);
+
+    boolean saveOrUpdateAndSoOn(Menu menu);
+
 }

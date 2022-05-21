@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhouhui.esms.mapper.SuppliesMapper">
 
+    <select id="pageWithSuppliesType" resultType="com.zhouhui.esms.entity.Supplies">
+        select es.*,t.type_name from esms_supplies es
+            join esms_supplies_type t
+            on es.supplies_type_id = t.type_id and es.del_flag = 0
+            ${ew.customSqlSegment}
+    </select>
 </mapper>

@@ -1,7 +1,10 @@
 package com.zhouhui.esms.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zhouhui.esms.entity.Supplies;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhouhui.esms.entity.SuppliesMidType;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SuppliesService extends IService<Supplies> {
 
+    IPage<Supplies> pageWithSuppliesType(IPage<Supplies> page, QueryWrapper<SuppliesMidType> queryWrapper);
 }

@@ -1,13 +1,13 @@
 package com.zhouhui.esms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -33,7 +33,7 @@ public class SuppliesType implements Serializable {
     private String typeName;
 
     @ApiModelProperty("级别;代表几级目录")
-    @TableField("level")
+    @TableField(exist = false)
     private Integer level;
 
     @ApiModelProperty("父级ID")
@@ -65,6 +65,9 @@ public class SuppliesType implements Serializable {
     @TableField("del_flag")
     @TableLogic
     private Integer delFlag;
+
+    @TableField(exist = false)
+    private List<SuppliesType> children;
 
 
 }

@@ -1,9 +1,15 @@
 package com.zhouhui.esms.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zhouhui.esms.entity.SuppliesType;
+import com.zhouhui.esms.service.SuppliesTypeService;
+import com.zhouhui.esms.utils.R;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +22,49 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/esms/supplies-type")
 public class SuppliesTypeController {
+
+    @Autowired
+    SuppliesTypeService suppliesTypeService;
+
+
+    @GetMapping("/suppliestypename")
+    public R findSuppliesTypeName(){
+        QueryWrapper<SuppliesType> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("type_id","type_name");
+        List<SuppliesType> list = suppliesTypeService.list(queryWrapper);
+        return R.ok().data("suppliesTypeList",list);
+    }
+
+    @GetMapping
+    @ApiOperation(value = "返回所有物质类型",notes = "返回所有物质类型，按照三级目录的形式")
+    public R findAll() {
+        List<SuppliesType> level1Node = suppliesTypeService.findAll();
+
+        return R.ok().data("suppliesTypeList", level1Node);
+    }
+
+
+
+    @PostMapping
+    @ApiOperation(value = "修改保存物资类型信息", notes = "修改保存物资类型信息,根据是否有id进行判断")
+    public R save(@RequestBody SuppliesType suppliesType) {
+        boolean b = suppliesTypeService.saveOrUpdate(suppliesType);
+        if (b) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除菜单信息", notes = "删除菜单信息")
+    public R delMenu(@PathVariable Integer id) {
+        boolean b = suppliesTypeService.removeById(id);
+        if (b) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
 
 }

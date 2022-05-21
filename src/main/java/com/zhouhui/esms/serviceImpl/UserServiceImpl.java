@@ -95,12 +95,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<Menu> menus = new ArrayList<>();
         //一共有三级目录
         for(Menu first : all){
-            if(menuList.contains(first.getMenuId()) || first.getPid() == null){
+            if(menuList.contains(first.getMenuId()) || first.getChildren() != null){
                 menus.add(first);
             }
             List<Menu> seconds = first.getChildren();
 
-            seconds.removeIf(menu -> !menuList.contains(menu.getMenuId()));
+            seconds.removeIf(menu -> !menuList.contains(menu.getMenuId()) && menu.getChildren() == null);
+
+
             for (Menu second : seconds){
                 List<Menu> thirds = second.getChildren();
                 thirds.removeIf(menu -> !menuList.contains(menu.getMenuId()));

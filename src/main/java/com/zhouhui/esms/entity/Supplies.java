@@ -1,13 +1,12 @@
 package com.zhouhui.esms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -78,5 +77,11 @@ public class Supplies implements Serializable {
     @TableLogic
     private Integer delFlag;
 
+    @ApiModelProperty("类别名称")
+    @TableField(exist = false)
+    private String typeName;
 
+    @ApiModelProperty("类别id集合")
+    @TableField(exist = false)
+    private Integer[] typeId;
 }

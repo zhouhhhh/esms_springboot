@@ -17,4 +17,7 @@ public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
 
     @Select("select menu_id from esms_role_menu where role_id = #{roleId}")
     List<Integer> selectListByRoleId(Integer roleId);
+
+    @Delete("delete from esms_role_menu where menu_id = #{pid}")
+    int deleteByMenuId(Integer pid);
 }

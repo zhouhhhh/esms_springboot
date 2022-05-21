@@ -27,7 +27,9 @@ public class CodeGeneratorFast {
                 "esms_supplies_in",
                 "esms_supplies_out",
                 "esms_supplies_type",
-                "esms_menu"));
+                "esms_menu",
+                "esms_dict",
+                "esms_supplies_mid_type"));
         //(1)第一步获取项目路径
         String projectPath=System.getProperty("user.dir");
         //（2）创建生产器
@@ -57,7 +59,7 @@ public class CodeGeneratorFast {
                 })
                 // 配置策略 StrategyConfig
                 .strategyConfig(builder -> {
-                    builder.addInclude("esms_menu")                    // 增加表匹配，需要映射的数据库中的表名
+                    builder.addInclude("esms_supplies_mid_type")                    // 增加表匹配，需要映射的数据库中的表名
                             .addTablePrefix("esms_")              // 增加过滤表前缀，生成时将数据库表的前缀"esms_"去掉
                             // 1.service策略配置
                             .serviceBuilder()

@@ -57,7 +57,8 @@ public class MenuController {
     @PostMapping
     @ApiOperation(value = "修改保存菜单信息", notes = "修改保存菜单信息,根据是否有id进行判断")
     public R save(@RequestBody Menu menu) {
-        boolean b = menuService.saveOrUpdate(menu);
+
+        boolean b = menuService.saveOrUpdateAndSoOn(menu);
         if (b) {
             return R.ok();
         } else {

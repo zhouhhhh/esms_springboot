@@ -1,7 +1,9 @@
 package com.zhouhui.esms.service;
 
-import com.zhouhui.esms.entity.SuppliesType;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhouhui.esms.entity.SuppliesType;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SuppliesTypeService extends IService<SuppliesType> {
 
+    List<SuppliesType> findAll();
+
+    public List<Integer> findChildrenTypeIds(Integer id);
 }
