@@ -67,7 +67,7 @@ public class User implements Serializable {
     private String email;
 
     @ApiModelProperty("创建人")
-    @TableField("created_by")
+    @TableField(value = "created_by",fill = FieldFill.INSERT)
     private Integer createdBy;
 
     @ApiModelProperty("创建时间")
@@ -75,7 +75,7 @@ public class User implements Serializable {
     private Date createdTime;
 
     @ApiModelProperty("更新人")
-    @TableField("updated_by")
+    @TableField(value = "updated_by",fill = FieldFill.UPDATE)
     private Integer updatedBy;
 
     @ApiModelProperty("更新时间")

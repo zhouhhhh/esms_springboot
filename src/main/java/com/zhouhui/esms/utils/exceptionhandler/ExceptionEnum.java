@@ -21,8 +21,8 @@ public enum ExceptionEnum implements BaseErrorInfoInterface{
     TOKEN_VERIFY_ERROR(4005, "token验证失败，请重新登录!"),
     INTERNAL_SERVER_ERROR(5000, "服务器内部错误!"),
     SERVICE_ERROR(5002,"业务逻辑异常!"),
-    SERVER_BUSY(5003,"服务器正忙，请稍后再试!");
-
+    SERVER_BUSY(5003,"服务器正忙，请稍后再试!"),
+    TRANSACTION_ERROR(5008,"事务流异常！");
     /**
      * 错误码
      */

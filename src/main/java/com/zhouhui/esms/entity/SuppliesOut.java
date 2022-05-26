@@ -1,13 +1,13 @@
 package com.zhouhui.esms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -34,9 +34,9 @@ public class SuppliesOut implements Serializable {
 
     @ApiModelProperty("优先级")
     @TableField("supplies_out_level")
-    private Integer suppliesOutLevel;
+    private String suppliesOutLevel;
 
-    @ApiModelProperty("物资发放类型")
+    @ApiModelProperty("领取类型")
     @TableField("supplies_out_type")
     private String suppliesOutType;
 
@@ -72,16 +72,9 @@ public class SuppliesOut implements Serializable {
     @TableField("description")
     private String description;
 
-    @ApiModelProperty("物资ID")
-    @TableField("supplies_id")
-    private Integer suppliesId;
-
-    @ApiModelProperty("物资数量")
-    @TableField("supplies_count")
-    private Integer suppliesCount;
 
     @ApiModelProperty("创建人")
-    @TableField("created_by")
+    @TableField(value = "created_by",fill = FieldFill.INSERT)
     private Integer createdBy;
 
     @ApiModelProperty("创建时间")
@@ -89,7 +82,7 @@ public class SuppliesOut implements Serializable {
     private Date createdTime;
 
     @ApiModelProperty("更新人")
-    @TableField("updated_by")
+    @TableField(value = "updated_by",fill = FieldFill.UPDATE)
     private Integer updatedBy;
 
     @ApiModelProperty("更新时间")
@@ -106,5 +99,9 @@ public class SuppliesOut implements Serializable {
     @TableLogic
     private Integer delFlag;
 
+
+    @ApiModelProperty("订单中的物资")
+    @TableField(exist = false)
+    private List<Supplies> suppliesList;
 
 }

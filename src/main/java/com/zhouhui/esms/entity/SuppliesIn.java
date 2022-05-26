@@ -1,13 +1,13 @@
 package com.zhouhui.esms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -33,63 +33,56 @@ public class SuppliesIn implements Serializable {
     private Integer suppliesInId;
 
     @ApiModelProperty("物资来源")
-    @TableField("SUPPLIES_IN_ROOT")
+    @TableField("supplies_in_root")
     private String suppliesInRoot;
 
     @ApiModelProperty("省份")
-    @TableField("SUPPLIES_IN_PROVINCES")
+    @TableField("supplies_in_provinces")
     private String suppliesInProvinces;
 
     @ApiModelProperty("城市")
-    @TableField("SUPPLIES_IN_CITY")
+    @TableField("supplies_in_city")
     private String suppliesInCity;
 
     @ApiModelProperty("区县")
-    @TableField("SUPPLIES_IN_COUNTY")
+    @TableField("supplies_in_county")
     private String suppliesInCounty;
 
     @ApiModelProperty("详细地址")
-    @TableField("SUPPLIES_IN_ADDRESS")
+    @TableField("supplies_in_address")
     private String suppliesInAddress;
 
     @ApiModelProperty("捐赠人")
-    @TableField("DONORS")
+    @TableField("donors")
     private String donors;
 
     @ApiModelProperty("邮箱")
-    @TableField("EMAIL")
+    @TableField("email")
     private String email;
 
     @ApiModelProperty("电话")
-    @TableField("PHONE")
+    @TableField("phone")
     private String phone;
 
     @ApiModelProperty("描述")
-    @TableField("DESCRIPTION")
+    @TableField("description")
     private String description;
 
-    @ApiModelProperty("物资ID")
-    @TableField("SUPPLIES_ID")
-    private Integer suppliesId;
-
-    @ApiModelProperty("物资数量")
-    @TableField("SUPPLIES_COUNT")
-    private Integer suppliesCount;
 
     @ApiModelProperty("创建人")
-    @TableField("CREATED_BY")
+    @TableField(value = "created_by",fill = FieldFill.INSERT)
     private Integer createdBy;
 
     @ApiModelProperty("创建时间")
-    @TableField(value = "CREATED_TIME",fill = FieldFill.INSERT)
+    @TableField(value = "created_time",fill = FieldFill.INSERT)
     private Date createdTime;
 
     @ApiModelProperty("更新人")
-    @TableField("UPDATED_BY")
+    @TableField(value = "updated_by",fill = FieldFill.UPDATE)
     private Integer updatedBy;
 
     @ApiModelProperty("更新时间")
-    @TableField(value = "UPDATED_TIME",fill = FieldFill.UPDATE)
+    @TableField(value = "updated_time",fill = FieldFill.UPDATE)
     private Date updatedTime;
 
     @ApiModelProperty("乐观锁")
@@ -102,5 +95,8 @@ public class SuppliesIn implements Serializable {
     @TableLogic
     private Integer delFlag;
 
+    @ApiModelProperty("订单中的物资")
+    @TableField(exist = false)
+    private List<Supplies> suppliesList;
 
 }

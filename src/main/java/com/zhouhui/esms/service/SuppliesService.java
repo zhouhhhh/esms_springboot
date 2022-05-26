@@ -1,10 +1,11 @@
 package com.zhouhui.esms.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.zhouhui.esms.entity.Supplies;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zhouhui.esms.entity.SuppliesMidType;
+import com.zhouhui.esms.entity.Supplies;
+import com.zhouhui.esms.entity.SuppliesInMidSupplies;
+import com.zhouhui.esms.entity.SuppliesOutMidSupplies;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +17,8 @@ import com.zhouhui.esms.entity.SuppliesMidType;
  */
 public interface SuppliesService extends IService<Supplies> {
 
-    IPage<Supplies> pageWithSuppliesType(IPage<Supplies> page, QueryWrapper<SuppliesMidType> queryWrapper);
+    boolean updateCount(List<Supplies> suppliesList,boolean t);
+
+    List<Supplies> listByIdsWithCountIn(List<SuppliesInMidSupplies> list);
+    List<Supplies> listByIdsWithCountOut(List<SuppliesOutMidSupplies> list);
 }

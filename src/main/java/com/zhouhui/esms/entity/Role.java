@@ -37,15 +37,15 @@ public class Role implements Serializable {
     private String roleDescription;
 
     @ApiModelProperty("创建人")
-    @TableField("created_by")
+    @TableField(value = "created_by",fill = FieldFill.INSERT)
     private Integer createdBy;
 
     @ApiModelProperty("创建时间")
-    @TableField("created_time")
+    @TableField(value = "created_time",fill = FieldFill.INSERT)
     private Date createdTime;
 
     @ApiModelProperty("更新人")
-    @TableField(value = "updated_by",fill = FieldFill.INSERT)
+    @TableField(value = "updated_by",fill = FieldFill.UPDATE)
     private Integer updatedBy;
 
     @ApiModelProperty("更新时间")

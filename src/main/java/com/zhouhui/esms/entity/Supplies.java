@@ -43,16 +43,13 @@ public class Supplies implements Serializable {
     @TableField("supplies_count")
     private Integer suppliesCount;
 
-    @ApiModelProperty("物资类别;根据类别ID取自类别表")
-    @TableField("supplies_type_id")
-    private Integer suppliesTypeId;
 
     @ApiModelProperty("图片")
     @TableField("supplies_pic")
     private String suppliesPic;
 
     @ApiModelProperty("创建人")
-    @TableField("created_by")
+    @TableField(value = "created_by",fill = FieldFill.INSERT)
     private Integer createdBy;
 
     @ApiModelProperty("创建时间")
@@ -60,7 +57,7 @@ public class Supplies implements Serializable {
     private Date createdTime;
 
     @ApiModelProperty("更新人")
-    @TableField("updated_by")
+    @TableField(value = "updated_by",fill = FieldFill.UPDATE)
     private Integer updatedBy;
 
     @ApiModelProperty("更新时间")

@@ -1,11 +1,7 @@
 package com.zhouhui.esms.mapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Constants;
-import com.zhouhui.esms.entity.Supplies;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zhouhui.esms.entity.SuppliesMidType;
+import com.zhouhui.esms.entity.Supplies;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,12 +16,15 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SuppliesMapper extends BaseMapper<Supplies> {
 
+
+    void updateCount(@Param("suppliesId") Integer suppliesId,
+                     @Param("suppliesCount") Integer suppliesCount);
+
     /**
      * 带有物资类型的分页
      * @param page
      * @param queryWrapper
      * @return
      */
-    IPage<Supplies> pageWithSuppliesType(IPage<Supplies> page,
-                                         @Param(Constants.WRAPPER) QueryWrapper<SuppliesMidType> queryWrapper);
+
 }

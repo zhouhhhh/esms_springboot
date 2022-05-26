@@ -7,7 +7,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <p>
@@ -15,42 +14,30 @@ import java.util.List;
  * </p>
  *
  * @author zhouhui
- * @since 2022-05-06
+ * @since 2022-05-22
  */
 @Data
-@TableName("esms_menu")
-@ApiModel(value = "Menu对象", description = "")
-public class Menu implements Serializable {
+@TableName("esms_supplies_in_mid_supplies")
+@ApiModel(value = "SuppliesInMidSupplies对象", description = "")
+public class SuppliesInMidSupplies implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("id")
-    @TableId(value = "menu_id", type = IdType.AUTO)
-    private Integer menuId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    @ApiModelProperty("名称")
-    @TableField("menu_name")
-    private String menuName;
+    @ApiModelProperty("入库id")
+    @TableField("supplies_in_id")
+    private Integer suppliesInId;
 
-    @ApiModelProperty("路径")
-    @TableField("menu_path")
-    private String menuPath;
+    @ApiModelProperty("物资id")
+    @TableField("supplies_id")
+    private Integer suppliesId;
 
-    @ApiModelProperty("图标")
-    @TableField("menu_icon")
-    private String menuIcon;
-
-    @ApiModelProperty("描述")
-    @TableField("description")
-    private String description;
-
-    @ApiModelProperty("父id")
-    @TableField("pid")
-    private Integer pid;
-
-    @ApiModelProperty("页面目录")
-    @TableField("dir")
-    private String dir;
+    @ApiModelProperty("物资数量")
+    @TableField("supplies_count")
+    private Integer suppliesCount;
 
     @ApiModelProperty("创建人")
     @TableField(value = "created_by",fill = FieldFill.INSERT)
@@ -77,10 +64,5 @@ public class Menu implements Serializable {
     @TableLogic
     private Integer delFlag;
 
-    @TableField(exist = false)
-    private List<Menu> children;
-
-    @TableField(exist = false)
-    private Integer level;
 
 }
