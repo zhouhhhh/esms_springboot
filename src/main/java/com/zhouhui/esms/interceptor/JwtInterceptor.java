@@ -48,7 +48,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         if(user == null){
             throw new BizException(ExceptionEnum.NOT_EXIST_USER);
         }
-        JWTVerifier build = JWT.require(Algorithm.HMAC256(user.getUserPassword())).build();
+        JWTVerifier build = JWT.require(Algorithm.HMAC256("zhouhui1234567")).build();
         try
         {
             build.verify(token);

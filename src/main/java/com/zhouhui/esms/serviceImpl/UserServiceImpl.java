@@ -68,7 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         {
             User selectOne = userMapper.selectOne(queryWrapper);
             if(selectOne != null){
-                String token = JWTUtils.createToken(selectOne.getUserId().toString(),selectOne.getUserPassword());
+                String token = JWTUtils.createToken(selectOne.getUserId().toString());
                 selectOne.setToken(token);
                 List<Menu> menus = getUserRoleMenus(selectOne);
                 selectOne.setMenus(menus);

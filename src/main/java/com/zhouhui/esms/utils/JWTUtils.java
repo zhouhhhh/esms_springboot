@@ -24,6 +24,9 @@ public class JWTUtils {
 
     private static UserService staticuserService;
 
+    private static final String secret = "zhouhui1234567";
+    private static final int expire = 2;
+
     @Autowired
     private UserService userService;
 
@@ -34,10 +37,10 @@ public class JWTUtils {
     /**
      * 生成token
      */
-    public static String createToken(String userId,String sign){
+    public static String createToken(String userId){
         return JWT.create().withAudience(userId) //将userid作为载荷存入token
-                .withExpiresAt(DateUtil.offsetHour(new Date(),2)) //2小时后token过期
-                .sign(Algorithm.HMAC256(sign));
+                .withExpiresAt(DateUtil.offsetHour(new Date(),expire)) //2小时后token过期
+                .sign(Algorithm.HMAC256(secret));
     }
 
     /**
