@@ -16,6 +16,7 @@ class EsmsApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("aaa");
     }
 
     @Autowired
